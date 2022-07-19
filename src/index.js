@@ -14,6 +14,7 @@ import "firebase/compat/firestore";
 import firebase from "firebase/compat/app";
 
 import configureStore from "./store/configureStore";
+import firebaseConfig from "./firebase/firebaseConfig";
 
 const store = configureStore();
 
