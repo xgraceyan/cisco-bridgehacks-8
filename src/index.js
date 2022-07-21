@@ -6,9 +6,9 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { createFirestoreInstance } from "redux-firestore";
-import { ReactReduxFirebaseProvider } from "react-redux-firebase";
+import { ReactReduxFirebaseProvider, isLoaded } from "react-redux-firebase";
 
 import "firebase/compat/firestore";
 import firebase from "firebase/compat/app";
@@ -21,6 +21,7 @@ const store = configureStore();
 const rrfConfig = {
   userProfile: "users",
   useFirestoreForProfile: true,
+  allowMultipleListeners: true,
 };
 
 const rrfProps = {
@@ -42,9 +43,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <App />
     </ReactReduxFirebaseProvider>
   </Provider>
 );
