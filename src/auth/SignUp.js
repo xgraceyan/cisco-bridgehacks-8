@@ -76,9 +76,6 @@ class SignUp extends React.Component {
               aria-describedby="emailHelp"
               onChange={this.handleChange}
             />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
           </div>
 
           <div className="mb-3">
@@ -91,6 +88,9 @@ class SignUp extends React.Component {
               id="password"
               onChange={this.handleChange}
             />
+            <div id="passwordHelp" className="form-text">
+              Your password must be at least 6 characters long
+            </div>
           </div>
 
           <button type="submit" className="btn btn-primary">

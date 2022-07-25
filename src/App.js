@@ -7,6 +7,9 @@ import LogIn from "./auth/LogIn";
 import SignUp from "./auth/SignUp";
 import Dashboard from "./dashboard/Dashboard";
 import TeamMenu from "./team/TeamMenu";
+import JoinTeam from "./team/JoinTeam";
+import LeaveTeam from "./team/LeaveTeam";
+import CreateTeam from "./team/CreateTeam";
 
 class App extends React.Component {
   render() {
@@ -17,6 +20,9 @@ class App extends React.Component {
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/teams" element={<TeamMenu />} />
+          <Route path="/jointeam/:teamId" element={<JoinTeam />} />
+          <Route path="/leaveteam/:teamId" element={<LeaveTeam />} />
+          <Route path="/createteam" element={<CreateTeam />} />
           <Route exact path="/" element={<Dashboard />} />
         </Routes>
       </Router>

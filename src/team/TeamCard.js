@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect } from "react-redux-firebase";
+import { Link } from "react-router-dom";
 
 export default function TeamCard(props) {
   const { teamId, userId } = props;
@@ -17,6 +18,18 @@ export default function TeamCard(props) {
 
   if (teams) {
     const teamRole = teams.owner === userId ? "Owner" : "Member";
+
+    const leaveTeam =
+      teams.owner === userId ? (
+        <Link to={"/leaveteam/" + teamId} className="card-link text-danger">
+          Delete Team
+        </Link>
+      ) : (
+        <Link to={"/leaveteam/" + teamId} className="card-link text-danger">
+          Leave Team
+        </Link>
+      );
+
     return (
       <div className="col-lg-3 col-sm-6">
         <div className="card">
@@ -26,12 +39,10 @@ export default function TeamCard(props) {
             <p className="card-text">
               {teams.members.length + 1} people in team
             </p>
-            <a href="#" className="card-link">
+            <Link to="/" className="card-link">
               View Tasks
-            </a>
-            <a href="#" className="card-link">
-              Leave Team
-            </a>
+            </Link>
+            {leaveTeam}
           </div>
         </div>
       </div>

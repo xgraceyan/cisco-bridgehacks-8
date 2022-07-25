@@ -9,12 +9,15 @@ const SignedInNav = (props) => {
       <NavLink to="/" className="nav-link">
         Home
       </NavLink>
-      <NavLink to="/signup" className="nav-link">
-        {profile.firstName} {profile.lastName}
+      <NavLink to="/teams" className="nav-link">
+        My Teams
       </NavLink>
       <a className="nav-link" onClick={props.logOut} href="/">
         Log Out
       </a>
+      <span className="navbar-text text-muted ms-auto">
+        &nbsp; &nbsp; (Signed in as {profile.firstName} {profile.lastName})
+      </span>
     </div>
   );
 };

@@ -47,6 +47,7 @@ export const signUp = (user) => {
             email: user.email,
             password: user.password,
             signupDate: new Date().getDate(),
+            teams: [],
           })
           .then(() => {
             dispatch({ type: "SIGNUP_SUCCESS" });
