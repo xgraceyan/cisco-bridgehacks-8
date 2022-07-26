@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect } from "react-redux-firebase";
 import { Link } from "react-router-dom";
+var jsonQuery = require("json-query");
 
 export default function TeamCard(props) {
   const { teamId, userId } = props;
@@ -30,6 +31,15 @@ export default function TeamCard(props) {
         </Link>
       );
 
+    var points = jsonQuery("points[id=" + userId + "].points", {
+      data: teams,
+    }).value;
+
+    const pointsText =
+      teams.owner === userId ? null : (
+        <p className="card-text">My points: {points}</p>
+      );
+
     return (
       <div className="col-lg-3 col-sm-6">
         <div className="card">
@@ -39,6 +49,7 @@ export default function TeamCard(props) {
             <p className="card-text">
               {teams.members.length + 1} people in team
             </p>
+            {pointsText}
             <Link to="/" className="card-link">
               View Tasks
             </Link>

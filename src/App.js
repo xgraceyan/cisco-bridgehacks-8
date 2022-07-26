@@ -10,6 +10,7 @@ import TeamMenu from "./team/TeamMenu";
 import JoinTeam from "./team/JoinTeam";
 import LeaveTeam from "./team/LeaveTeam";
 import CreateTeam from "./team/CreateTeam";
+import TasksMenu from "./tasks/TasksMenu";
 
 class App extends React.Component {
   render() {
@@ -23,6 +24,7 @@ class App extends React.Component {
           <Route path="/jointeam/:teamId" element={<JoinTeam />} />
           <Route path="/leaveteam/:teamId" element={<LeaveTeam />} />
           <Route path="/createteam" element={<CreateTeam />} />
+          <Route path="/tasks/:teamId" element={<TasksMenu />} />
           <Route exact path="/" element={<Dashboard />} />
         </Routes>
       </Router>

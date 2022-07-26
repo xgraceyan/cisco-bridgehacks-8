@@ -9,6 +9,10 @@ export const joinTeam = (userId, teamId) => {
       .doc(teamId)
       .update({
         members: firebase.firestore.FieldValue.arrayUnion(userId),
+        points: firebase.firestore.FieldValue.arrayUnion({
+          id: userId,
+          points: 0,
+        }),
       })
       .then(() => {
         firestore
@@ -31,7 +35,7 @@ export const joinTeam = (userId, teamId) => {
   };
 };
 
-export const leaveTeam = (userId, teamId) => {
+export const leaveTeam = (userId, teamId, points) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
@@ -41,7 +45,7 @@ export const leaveTeam = (userId, teamId) => {
       .collection("teams")
       .doc(teamId)
       .update({
-        members: firebase.firestore.FieldValue.arrayRemove(userId),
+        members: firebase.firestore.FieldValue.arrayRemove(points),
       })
       .then(() => {
         firestore
@@ -99,6 +103,7 @@ export const createTeam = (userId, teamInfo) => {
       .add({
         name: teamInfo.name,
         members: [],
+        points: [],
         owner: userId,
         pointWeeks: parseInt(teamInfo.pointWeeks),
       })

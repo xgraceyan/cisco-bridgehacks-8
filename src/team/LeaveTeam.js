@@ -5,6 +5,7 @@ import "firebase/firestore";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect } from "react-redux-firebase";
 import { leaveTeam, deleteTeam } from "../store/actions/teamActions";
+var jsonQuery = require("json-query");
 
 function LeaveTeam(props) {
   const [action, setAction] = React.useState();
@@ -44,7 +45,10 @@ function LeaveTeam(props) {
           props.deleteTeam(userId, teamId, teams.members);
         } else {
           setAction("left");
-          props.leaveTeam(userId, teamId);
+          const points = jsonQuery("points[id=" + userId + "]", {
+            data: teams[teamId],
+          }).value;
+          props.leaveTeam(userId, teamId, points);
         }
       } else navigate("/teams");
     }
