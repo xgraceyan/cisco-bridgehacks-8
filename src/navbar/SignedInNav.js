@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { logOut } from "../store/actions/authActions";
 import { NavLink } from "react-router-dom";
+import React from "react";
 
 const SignedInNav = (props) => {
   const profile = props.profile;
