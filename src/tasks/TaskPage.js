@@ -63,7 +63,7 @@ function TaskPage(props) {
           </p>
           <p>
             <strong>Date approved: </strong>{" "}
-            {task.submitDate
+            {task.approvalDate
               ? moment(task.approvalDate.toDate()).calendar()
               : "Not approved yet"}
           </p>
