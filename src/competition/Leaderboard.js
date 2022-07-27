@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect, useSelector } from "react-redux";
 import { useFirestoreConnect } from "react-redux-firebase";
 import { useParams } from "react-router";
@@ -6,6 +6,8 @@ var sortJsonArray = require("sort-json-array");
 
 function Leaderboard(props) {
   const { teamId } = useParams();
+
+  // const [list, setList] = useState();
 
   useFirestoreConnect([
     {
@@ -22,11 +24,25 @@ function Leaderboard(props) {
     (state) => state.firestore.data && state.firestore.data
   );
 
-  if (teams && teams[teamId] && users) {
-    const pointsList = sortJsonArray(teams[teamId].points, "points", "des");
+  if (teams && teams[teamId].points && users) {
     var count = 0;
 
-    if (pointsList.length > 0) {
+    const list = [...teams[teamId].points];
+
+    function sortByPoints(a, b) {
+      if (a.points < b.points) return 1;
+      if (a.points > b.points) return -1;
+      if (a.points == b.points) {
+        if (list.indexOf(a) > list.indexOf(b)) return -1;
+        else return 1;
+      }
+    }
+
+    if (list) {
+      list.sort(sortByPoints);
+    }
+
+    if (list && list.length > 0) {
       return (
         <div className="container" id="leaderboard">
           <div className="text-center mb-3">
@@ -42,8 +58,8 @@ function Leaderboard(props) {
               </tr>
             </thead>
             <tbody>
-              {pointsList &&
-                pointsList.map((member) => {
+              {list &&
+                list.map((member) => {
                   count++;
                   return (
                     <tr key={member.id}>
