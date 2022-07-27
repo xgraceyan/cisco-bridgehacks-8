@@ -16,11 +16,11 @@ const TeamInvite = (props) => {
             props.teamId}
         </Link>
       </h5>
-      <Link to="/teams">
+      <a href="/teams">
         <button type="submit" className="btn btn-primary">
           Back to Teams
         </button>
-      </Link>
+      </a>
     </div>
   );
 };

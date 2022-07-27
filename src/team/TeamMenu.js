@@ -55,11 +55,11 @@ class TeamMenu extends React.Component {
                         onChange={this.handleJoinChange}
                       />
                     </div>
-                    <Link to={"/jointeam/" + this.state.joinCode}>
+                    <a href={"/jointeam/" + this.state.joinCode}>
                       <button type="submit" className="btn btn-primary">
                         Submit
                       </button>
-                    </Link>
+                    </a>
                   </form>
                 </div>
 

@@ -22,13 +22,13 @@ export default function TeamCard(props) {
 
     const leaveTeam =
       teams.owner === userId ? (
-        <Link to={"/leaveteam/" + teamId} className="card-link text-danger">
+        <a href={"/leaveteam/" + teamId} className="card-link text-danger">
           Delete Team
-        </Link>
+        </a>
       ) : (
-        <Link to={"/leaveteam/" + teamId} className="card-link text-danger">
+        <a href={"/leaveteam/" + teamId} className="card-link text-danger">
           Leave Team
-        </Link>
+        </a>
       );
 
     var points = jsonQuery("points[id=" + userId + "].points", {

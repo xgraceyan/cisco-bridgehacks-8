@@ -52,11 +52,11 @@ function JoinTeam(props) {
   return (
     <div className="container text-center">
       <h1 className="text-center">{message}</h1>
-      <Link to="/teams">
+      <a href="/teams">
         <button type="button" className="btn btn-primary">
           Go to Teams
         </button>
-      </Link>
+      </a>
     </div>
   );
 }

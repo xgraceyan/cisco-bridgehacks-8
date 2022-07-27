@@ -59,11 +59,11 @@ function LeaveTeam(props) {
       <h1 className="text-center">
         Successfully {action} {teamName}
       </h1>
-      <Link to="/teams">
+      <a href="/teams">
         <button type="button" className="btn btn-primary">
           Go to Teams
         </button>
-      </Link>
+      </a>
     </div>
   );
 }

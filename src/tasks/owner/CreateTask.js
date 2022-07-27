@@ -60,12 +60,12 @@ function CreateTask(props) {
           <div className="container" id="task-created">
             <div className="text-center">
               <h1>Your task was created</h1>
-              <Link to={"/task/" + newTaskId}>
+              <a href={"/task/" + newTaskId}>
                 <h5>Go to task</h5>
-              </Link>
-              <Link to={"/tasks/" + teamId}>
+              </a>
+              <a href={"/tasks/" + teamId}>
                 <h5>Back to team tasks</h5>
-              </Link>
+              </a>
             </div>
           </div>
         );
