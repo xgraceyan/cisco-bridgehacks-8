@@ -54,13 +54,14 @@ export const approveTask = (taskId, teamId, userId, points) => {
                 }),
               })
               .then(() => {
+                const newPoints = +parseInt(pointsData) + +parseInt(points);
                 firestore
                   .collection("teams")
                   .doc(teamId)
                   .update({
                     points: firebase.firestore.FieldValue.arrayUnion({
                       id: userId,
-                      points: pointsData + points,
+                      points: newPoints,
                     }),
                   });
               });
