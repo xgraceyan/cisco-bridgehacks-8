@@ -50,9 +50,9 @@ export default function TeamCard(props) {
               {teams.members.length + 1} people in team
             </p>
             {pointsText}
-            <Link to="/" className="card-link">
+            <a href={"/tasks/" + teamId} className="card-link">
               View Tasks
-            </Link>
+            </a>
             {leaveTeam}
           </div>
         </div>

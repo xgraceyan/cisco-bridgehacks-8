@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Navigate } from "react-router";
 import { logOut } from "../store/actions/authActions";
 
 class Dashboard extends React.Component {
@@ -12,19 +13,13 @@ class Dashboard extends React.Component {
     const { auth } = this.props;
 
     if (auth.uid) {
+      return <Navigate to="/teams" />;
+    } else {
       return (
-        <div className="dashboard container">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={this.handleLogOut}
-          >
-            Log Out
-          </button>
+        <div className="text-center">
+          You are not logged in. Please log in to access Educated Brainstorm.
         </div>
       );
-    } else {
-      return <div>Not logged in</div>;
     }
   }
 }

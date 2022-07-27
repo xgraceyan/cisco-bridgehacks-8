@@ -45,7 +45,8 @@ export const leaveTeam = (userId, teamId, points) => {
       .collection("teams")
       .doc(teamId)
       .update({
-        members: firebase.firestore.FieldValue.arrayRemove(points),
+        members: firebase.firestore.FieldValue.arrayRemove(userId),
+        points: firebase.firestore.FieldValue.arrayRemove(points),
       })
       .then(() => {
         firestore

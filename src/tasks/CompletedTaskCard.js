@@ -1,17 +1,15 @@
 import React from "react";
-import { submitTask } from "../store/actions/taskActions";
-import { connect } from "react-redux";
 var moment = require("moment");
 var sortJsonArray = require("sort-json-array");
 
-function ActiveTaskCard(props) {
-  const { tasks, owner, users } = props;
+export default function CompletedTaskCard(props) {
+  const { tasks, users, owner } = props;
 
   if (tasks.length > 0) {
-    const orderedTasks = sortJsonArray(tasks, "dueDate", "asc");
+    const orderedTasks = sortJsonArray(tasks, "approvalDate", "des");
     return (
       <div>
-        <h3>Active Tasks {"(" + orderedTasks.length + ")"}</h3>
+        <h3>Completed Tasks {"(" + orderedTasks.length + ")"}</h3>
         <div className="row">
           {orderedTasks.map((task) => {
             return (
@@ -19,8 +17,11 @@ function ActiveTaskCard(props) {
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title">{task.name}</h5>
+                    <p className="card-subtitle text-success">
+                      Completed & Approved
+                    </p>
                     <h6 className="card-subtitle mb-2 text-muted">
-                      Due: {moment(task.dueDate.toDate()).calendar()}
+                      Approved: {moment(task.approvalDate.toDate()).calendar()}
                     </h6>
                     {owner === 1 && users ? (
                       <p className="card-subtitle mb-2 text-muted">
@@ -36,21 +37,6 @@ function ActiveTaskCard(props) {
                         ? task.description.substring(0, 90) + "..."
                         : task.description}
                     </p>
-                    <a href={"/task/" + task.taskId} className="card-link">
-                      View Task
-                    </a>
-                    {owner === 1 ? null : (
-                      <a
-                        href="#"
-                        className="card-link"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          props.submitTask(task.taskId);
-                        }}
-                      >
-                        Mark as Complete
-                      </a>
-                    )}
                   </div>
                 </div>
               </div>
@@ -62,17 +48,9 @@ function ActiveTaskCard(props) {
   } else {
     return (
       <div>
-        <h3>Active Tasks (0)</h3>
-        <p>You have no active tasks.</p>
+        <h3>Completed Tasks (0)</h3>
+        <p>You have no completed tasks.</p>
       </div>
     );
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    submitTask: (taskId) => dispatch(submitTask(taskId)),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(ActiveTaskCard);

@@ -6,15 +6,14 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import { createFirestoreInstance } from "redux-firestore";
-import { ReactReduxFirebaseProvider, isLoaded } from "react-redux-firebase";
+import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 
 import "firebase/compat/firestore";
 import firebase from "firebase/compat/app";
 
 import configureStore from "./store/configureStore";
-import firebaseConfig from "./firebase/firebaseConfig";
 
 const store = configureStore();
 
@@ -30,14 +29,6 @@ const rrfProps = {
   dispatch: store.dispatch,
   createFirestoreInstance,
 };
-
-// function AuthIsLoaded({ children }) {
-//   const auth = useSelector((state) => state.firebase.auth);
-//   if (!isLoaded(auth)) {
-//     return <div>Loading...</div>;
-//   }
-//   return children;
-// }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

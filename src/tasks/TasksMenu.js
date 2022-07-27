@@ -4,6 +4,9 @@ import { connect, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import ActiveTaskCard from "./ActiveTaskCard";
 import WaitingTaskCard from "./WaitingTaskCard";
+import CompletedTaskCard from "./CompletedTaskCard";
+import OwnerTasksMenu from "./owner/OwnerTasksMenu";
+var jsonQuery = require("json-query");
 
 function TasksMenu(props) {
   const navigate = useNavigate();
@@ -15,10 +18,22 @@ function TasksMenu(props) {
     {
       collection: "teams",
     },
+    {
+      collection: "tasks",
+      where: ["teamId", "==", teamId],
+      where: ["userId", "==", userId],
+    },
+    {
+      collection: "users",
+      where: ["teams", "array-contains", teamId],
+    },
   ]);
-  const teams = useSelector(
-    (state) => state.firestore.data.teams && state.firestore.data.teams
+
+  const data = useSelector(
+    (state) => state.firestore.data && state.firestore.data
   );
+
+  const { teams, users } = data;
 
   React.useEffect(() => {
     if (teams) {
@@ -31,20 +46,44 @@ function TasksMenu(props) {
     }
   }, []);
 
-  if (teams) {
-    return (
-      <div className="container" id="tasks-menu">
-        <h1 className="text-center">Tasks for {teams[teamId].name}</h1>
-        <section id="current-tasks">
-          <h3>Current Tasks</h3>
-          <ActiveTaskCard teamId={teamId} userId={userId} />
-        </section>
-        <section id="waiting-tasks">
-          <h3>Waiting for Approval</h3>
-          <WaitingTaskCard teamId={teamId} userId={userId} />
-        </section>
-      </div>
-    );
+  if (teams && users) {
+    if (teams[teamId].owner === userId) {
+      // owner task page
+      return (
+        <OwnerTasksMenu team={teams[teamId]} teamId={teamId} users={users} />
+      );
+    } else {
+      // member task page
+      const activeTasks = jsonQuery("tasks[**][*status=0]", {
+        data: data,
+      }).value;
+
+      const waitingTasks = jsonQuery("tasks[**][*status=1]", {
+        data: data,
+      }).value;
+
+      const completedTasks = jsonQuery("tasks[**][*status=2]", {
+        data: data,
+      }).value;
+
+      return (
+        <div className="container" id="tasks-menu">
+          <h1 className="text-center">Tasks for {teams[teamId].name}</h1>
+          <p className="text-center">
+            Hello! Here are the tasks you have been assigned to do.
+          </p>
+          <section id="current-tasks">
+            <ActiveTaskCard tasks={activeTasks} />
+          </section>
+          <section id="waiting-tasks">
+            <WaitingTaskCard tasks={waitingTasks} />
+          </section>
+          <section id="completed-tasks">
+            <CompletedTaskCard tasks={completedTasks} />
+          </section>
+        </div>
+      );
+    }
   }
 }
 

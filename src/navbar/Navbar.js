@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { logOut } from "../store/actions/authActions";
 import SignedInNav from "./SignedInNav";
 import SignedOutNav from "./SignedOutNav";
 
@@ -13,7 +12,6 @@ class Navbar extends React.Component {
       <SignedOutNav />
     );
 
-    console.log(profile);
     return (
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">

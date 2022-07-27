@@ -1,10 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Navigate, useNavigate } from "react-router";
-import { firebaseConnect, isLoaded } from "react-redux-firebase";
-import { firestoreConnect } from "react-redux-firebase";
-import { compose } from "redux";
-import firebase from "firebase/compat/app";
+import { Navigate } from "react-router";
+import { isLoaded } from "react-redux-firebase";
 import TeamCard from "./TeamCard";
 import { Link } from "react-router-dom";
 
