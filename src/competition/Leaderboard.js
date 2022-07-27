@@ -26,8 +26,6 @@ function Leaderboard(props) {
     const pointsList = sortJsonArray(teams[teamId].points, "points", "des");
     var count = 0;
 
-    console.log(pointsList);
-
     if (pointsList.length > 0) {
       return (
         <div className="container" id="leaderboard">
