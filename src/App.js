@@ -24,6 +24,7 @@ import CreateTeam from "./team/CreateTeam";
 import TasksMenu from "./tasks/TasksMenu";
 import CreateTask from "./tasks/owner/CreateTask";
 import TaskPage from "./tasks/TaskPage";
+import Leaderboard from "./competition/Leaderboard";
 
 class App extends React.Component {
   render() {
@@ -65,6 +66,10 @@ class App extends React.Component {
 
           <Route element={<AuthIsLoaded />}>
             <Route path="/task/:taskId" element={<TaskPage />} />
+          </Route>
+
+          <Route element={<AuthIsLoaded />}>
+            <Route path="/leaderboard/:teamId" element={<Leaderboard />} />
           </Route>
 
           <Route exact path="/" element={<Dashboard />} />

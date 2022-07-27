@@ -53,6 +53,10 @@ export default function TeamCard(props) {
             <a href={"/tasks/" + teamId} className="card-link">
               View Tasks
             </a>
+            <a href={"/leaderboard/" + teamId} className="card-link">
+              Leaderboard
+            </a>
+            <br />
             {leaveTeam}
           </div>
         </div>
