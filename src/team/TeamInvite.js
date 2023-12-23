@@ -10,10 +10,9 @@ const TeamInvite = (props) => {
         <code>{props.teamId}</code>
       </h1>
       <p>Or join using the link:</p>
-      <h5>
+      <h5 className="pb-4">
         <Link to={"/jointeam/" + props.teamId} target="_blank">
-          {"https://main--melodic-swan-71c046.netlify.app/jointeam/" +
-            props.teamId}
+          {"https://educatedbrainstorm.graceyan.net/jointeam/" + props.teamId}
         </Link>
       </h5>
       <a href="/teams">

@@ -56,9 +56,7 @@ function LeaveTeam(props) {
 
   return (
     <div className="container text-center">
-      <h1 className="text-center">
-        Successfully {action} {teamName}
-      </h1>
+      <h1 className="text-center">Successfully removed {teamName}</h1>
       <a href="/teams">
         <button type="button" className="btn btn-primary">
           Go to Teams

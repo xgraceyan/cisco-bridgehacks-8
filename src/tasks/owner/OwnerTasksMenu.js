@@ -4,10 +4,12 @@ import { useFirestoreConnect } from "react-redux-firebase";
 import ActiveTaskCard from "../ActiveTaskCard";
 import WaitingTaskCard from "../WaitingTaskCard";
 import CompletedTaskCard from "../CompletedTaskCard";
+import TeamCodeModal from "../../team/TeamCodeModal";
 var jsonQuery = require("json-query");
 
 function OwnerTasksMenu(props) {
   const { team, teamId, users } = props;
+  console.log(">>>>", props);
 
   useFirestoreConnect([
     {
@@ -34,11 +36,20 @@ function OwnerTasksMenu(props) {
 
   return (
     <div className="container" id="tasks-menu">
-      <div className="text-center">
+      <TeamCodeModal teamName={team.name} code={teamId} />
+      <div className="text-center pb-5">
         <h1 className="text-center">Tasks for {team.name}</h1>
         <p className="text-center">
           Manage and add members' tasks (owner view)
         </p>
+        <a
+          className="text-center"
+          href=""
+          data-bs-toggle="modal"
+          data-bs-target="#teamCodeModal"
+        >
+          <h5>Show code</h5>
+        </a>
         <a className="text-center" href={"/createtask/" + teamId}>
           <h4>Create a Task</h4>
         </a>

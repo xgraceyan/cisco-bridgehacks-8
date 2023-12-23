@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import SignedInNav from "./SignedInNav";
 import SignedOutNav from "./SignedOutNav";
+import { NavLink } from "react-router-dom";
 
 class Navbar extends React.Component {
   render() {
@@ -13,11 +14,11 @@ class Navbar extends React.Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-lg bg-light">
+      <nav className="navbar navbar-light navbar-expand-lg ps-3 pe-3">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <NavLink to="/" className="navbar-brand fw-bold">
             Educated Brainstorm
-          </a>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"

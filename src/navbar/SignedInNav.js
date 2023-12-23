@@ -6,19 +6,13 @@ import React from "react";
 const SignedInNav = (props) => {
   const profile = props.profile;
   return (
-    <div className="navbar-nav" id="signed-out-nav">
-      <NavLink to="/" className="nav-link">
-        Home
-      </NavLink>
-      <NavLink to="/teams" className="nav-link">
-        My Teams
-      </NavLink>
+    <div className="navbar-nav ms-auto" id="signed-in-nav">
+      <span className="navbar-text text-muted">
+        &nbsp; &nbsp; (Signed in as {profile.firstName} {profile.lastName})
+      </span>
       <a className="nav-link" onClick={props.logOut} href="/">
         Log Out
       </a>
-      <span className="navbar-text text-muted ms-auto">
-        &nbsp; &nbsp; (Signed in as {profile.firstName} {profile.lastName})
-      </span>
     </div>
   );
 };

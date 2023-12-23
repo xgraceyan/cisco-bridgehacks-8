@@ -32,7 +32,7 @@ function TaskPage(props) {
 
     return (
       <div className="container" id="tasks-page">
-        <div className="text-center mb-3">
+        <div className="text-center pb-5">
           <h1>{task.name}</h1>
           <h5 className="text-muted">Task info</h5>
         </div>
